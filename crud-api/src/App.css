@@ -90,3 +90,28 @@ article.card {
     grid-template-columns: 1fr;
   }
 }
+
+/* input text */
+.app-heading ~ form {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.field-group > label {
+  width: 200px;
+  display: inline-block;
+  text-align: right;
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.field-group input {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  outline: none;
+  border: none;
+  background: gainsboro;
+  border-radius: 5px;
+  font-size: 18px;
+}

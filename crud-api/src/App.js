@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import './App.css'
+import UserForm from './components/UserForm';
 
 const URL = "https://jsonplaceholder.typicode.com/posts";
 const App = () => {
@@ -29,9 +30,52 @@ const App = () => {
     getAllUsers();
   }, [])
 
+
+  // delete user
+  const handleDelete=(id)=>{
+    // alert(id)
+    fetch(URL+`/${id}`,{
+      method: 'DELETE'
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Could not Delete")
+      }
+      getAllUsers();
+    })
+    .catch((err) => {
+      setError(err.message);
+    })
+  }
+
+  const addUser = (user)=>{
+    // console.log(data);
+    fetch(URL,{
+      method: 'POST',
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(user)
+    })
+    .then((res) => {
+      if (res.status===201) {
+        getAllUsers();
+      }else{
+        throw Error("Could not Created")
+
+      }
+    })
+    .catch((err) => {
+      setError(err.message);
+    })
+  }
+
   return (
     <div>
       <h1 className='app-heading'>User Management App</h1>
+
+      <UserForm btnText="Add User" handleSubmitData={addUser}/>
+
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>{error}</h2>}
 
@@ -44,7 +88,7 @@ const App = () => {
               <h3>{title}</h3>
               <p>{body}</p>
               <button className='btnStyle'>Edit</button>
-              <button className='btnStyle'>Delete</button>
+              <button className='btnStyle' onClick={()=>{handleDelete(id)}}>Delete</button>
             </div>
           </article>
         )
