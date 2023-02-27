@@ -36,3 +36,57 @@
     transform: rotate(360deg);
   }
 }
+
+
+/*
+* Custom css
+*/
+.app-heading{
+  display: grid;
+  justify-content: center;
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 10px;
+}
+article.card {
+  padding: 15px 25px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.card-item p {
+  margin: 5px;
+  font-size: 17px;
+}
+.btnStyle{
+  margin-right: 10px;
+  border: none;
+  padding: 10px 20px;
+  background: plum;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+@media screen and (max-width: 992px) {
+  .wrapper{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 540px) {
+  .app-heading{
+    font-size: 25px;
+  }
+  .wrapper{
+    grid-template-columns: 1fr;
+  }
+}
