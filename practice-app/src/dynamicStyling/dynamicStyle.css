@@ -1,0 +1,24 @@
+.headingStyle{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.valideColor{
+    background-color: #3b82f6;
+}
+
+.invalidColor{
+    background-color: #a855f7;
+}
+
+.inputStyle{
+    outline: none;
+    padding: 15px;
+    border: none;
+    font-size:18px;
+    border-radius:5px;
+    margin-left:20px;
+    color:#fff;
+    font-weight:bold;
+    margin-bottom: 50px;
+}
