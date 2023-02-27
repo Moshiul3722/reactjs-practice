@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const UserForm = ({ btnText, handleSubmitData }) => {
+const UserForm = ({ btnText, handleSubmitData, selectedUser }) => {
     const [user, setUser] = useState({
         username: '',
         email: ''
@@ -27,6 +27,14 @@ const UserForm = ({ btnText, handleSubmitData }) => {
     }
     const { username, email } = user;
 
+useEffect(() => {
+ setUser({
+    username: selectedUser.username,
+    email: selectedUser.email
+ })
+}, [selectedUser])
+
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="field-group">
@@ -42,6 +50,11 @@ const UserForm = ({ btnText, handleSubmitData }) => {
     )
 }
 
-UserForm.propTypes = {}
+UserForm.defaultProps = {
+    selectedUser:{
+        username:'',
+        email:''
+    }
+}
 
 export default UserForm
