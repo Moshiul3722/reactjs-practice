@@ -17,6 +17,7 @@ const App = () => {
   });
 
   const [updateFlag, setUpdateFlag] = useState(false)
+  const [selectedUserId, setSelectedUserId] = useState("")
 
   const getAllUsers = () => {
     fetch(URL).then((res) => {
@@ -80,7 +81,8 @@ const App = () => {
 
 
   const handleEdit = (id) => {
-    setUpdateFlag(true)
+    setSelectedUserId(id);
+    setUpdateFlag(true);
     // alert(id)
     const fileterData = users.filter((user) => user.id === id);
     // console.log(fileterData)
@@ -92,7 +94,7 @@ const App = () => {
 
   const handleUpdate = (user) => {
     // console.log(user);
-    fetch(URL, {
+    fetch(URL+`/${selectedUserId}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
