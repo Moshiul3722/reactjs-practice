@@ -1,8 +1,12 @@
 import React from 'react'
 
+import Memo from './Memo/Memo'
+
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Memo/>
+    </div>
   )
 }
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
 import './App.css'
-import UserForm from './components/UserForm';
+// import UserForm from './components/UserForm';
+import PostForm from './components/PostForm';
 
 const URL = "https://jsonplaceholder.typicode.com/posts";
 const App = () => {
 
-  const [users, setUsers] = useState(null);
+  // const [users, setUsers] = useState(null);
+  const [posts, setPosts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null)
 
@@ -26,7 +28,7 @@ const App = () => {
       }
       return res.json()
     }).then((data) => {
-      setUsers(data);
+      setPosts(data);
       console.log(data)
     }).catch((err) => {
       setError(err.message);
@@ -42,11 +44,16 @@ const App = () => {
 
   // delete user
   const handleDelete = (id) => {
-    // alert(id)
-    fetch(URL + `/${id}`, {
+    
+    // alert(URL+`/${id}`);
+
+
+    // fetch(URL + `/${id}`, {
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+     
       method: 'DELETE'
     })
-      .then((res) => {
+      .then((res) => {       
         if (!res.ok) {
           throw Error("Could not Delete")
         }
@@ -57,6 +64,7 @@ const App = () => {
       })
   }
 
+  // inset data
   const addUser = (user) => {
     // console.log(data);
     fetch(URL, {
@@ -80,11 +88,12 @@ const App = () => {
   }
 
 
+  // edit data
   const handleEdit = (id) => {
     setSelectedUserId(id);
     setUpdateFlag(true);
     // alert(id)
-    const fileterData = users.filter((user) => user.id === id);
+    const fileterData = posts.filter((user) => user.id === id);
     // console.log(fileterData)
     setSelectedUser({
       username: fileterData[0].username,
@@ -92,6 +101,7 @@ const App = () => {
     })
   }
 
+  // update data
   const handleUpdate = (user) => {
     // console.log(user);
     fetch(URL+`/${selectedUserId}`, {
@@ -115,16 +125,19 @@ const App = () => {
 
   return (
     <div>
-      <h1 className='app-heading'>User Management App</h1>
+      <h1 className='app-heading'>Post Management App</h1>
 
-      {updateFlag ? <UserForm btnText="Update User" selectedUser={selectedUser} handleUpdate={handleUpdate} /> : <UserForm btnText="Add User" handleSubmitData={addUser} />}
+      {/* {updateFlag ? <UserForm btnText="Update User" selectedUser={selectedUser} handleUpdate={handleUpdate} /> : <UserForm btnText="Add User" handleSubmitData={addUser} />} */}
+
+
+      {updateFlag ? <PostForm btnText="Update User" selectedUser={selectedUser} handleUpdate={handleUpdate} /> : <PostForm btnText="Add User" handleSubmitData={addUser} />}
 
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>{error}</h2>}
 
       <div className="wrapper">
-        {users && users.map((user) => {
-          const { id, title, body } = user;
+        {posts && posts.map((post) => {
+          const { id, title, body } = post;
           return (
             <article key={id} className="card">
               <div className='card-item'>

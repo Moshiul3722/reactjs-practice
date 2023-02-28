@@ -1,0 +1,3 @@
+Parent component এর সাথে Child component rerender হয়।
+
+এই unnecessary rerendering off করার জন্য memo function ব্যবহারকরা হয়।
