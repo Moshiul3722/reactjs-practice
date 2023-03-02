@@ -1,19 +1,17 @@
 import React, {memo} from 'react'
 
-const Message = () => {
+const Message = ({numberOfMessage, onHandleIncrement}) => {
 
     console.log("Message Rendering")
   return (
     <div>
-        <h3>Send 0 message</h3>
+        <h3>Send {numberOfMessage} message</h3>
+        <button onClick={onHandleIncrement}>Increment Message Number</button>
     </div>
   )
 }
 
 
-// const Message = memo(()=>{
-// console.log("Message rendering");
-// return <p>Send 0 message</p>
-// });
+
 
 export default memo(Message);
