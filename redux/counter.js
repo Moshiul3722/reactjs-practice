@@ -51,7 +51,7 @@ const counterReducer =(state=initialState, action)=>{
             }  
     
         default:
-            state;
+           return state;
     }
 }
 
